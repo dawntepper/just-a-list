@@ -11,7 +11,6 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Todo List Chrome Extension</title>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className="bg-background text-foreground">
         <div className="container mx-auto max-w-2xl">{children}</div>

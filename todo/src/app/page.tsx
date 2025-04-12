@@ -6,13 +6,9 @@ const TodoList = dynamic(
   { ssr: false }
 );
 
-export function generateStaticParams() {
-  return [{ slug: "" }, { slug: ["sidepanel"] }];
-}
-
 export default function Home() {
   return (
-    <div className="p-4 h-screen overflow-auto">
+    <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Todo List</h1>
       <TodoList isPremium={true} />
     </div>
