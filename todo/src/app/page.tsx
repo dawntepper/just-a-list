@@ -1,16 +1,22 @@
 import React from "react";
+import { createRoot } from "react-dom/client";
 import dynamic from "next/dynamic";
+import "../styles/globals.css";
 
-const TodoList = dynamic(
-  () => import("@/components/enhanced-todo-list-creator"),
-  { ssr: false }
+const EnhancedTodoListCreator = dynamic(
+  () => import("../components/enhanced-todo-list-creator"),
+  {
+    loading: () => <div>Loading...</div>,
+    ssr: false,
+  }
 );
 
-export default function Home() {
-  return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Todo List</h1>
-      <TodoList isPremium={true} />
-    </div>
+const container = document.getElementById("root");
+if (container) {
+  const root = createRoot(container);
+  root.render(
+    <React.StrictMode>
+      <EnhancedTodoListCreator isPremium={true} />
+    </React.StrictMode>
   );
 }

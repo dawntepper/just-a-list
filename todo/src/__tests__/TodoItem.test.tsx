@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import TodoItem from "../components/TodoItem";
 
@@ -24,6 +25,7 @@ describe("TodoItem", () => {
         onToggle={mockOnToggle}
         onDelete={mockOnDelete}
         onEdit={mockOnEdit}
+        index={0}
       />
     );
     expect(screen.getByText("Test todo")).toBeInTheDocument();
@@ -36,6 +38,7 @@ describe("TodoItem", () => {
         onToggle={mockOnToggle}
         onDelete={mockOnDelete}
         onEdit={mockOnEdit}
+        index={0}
       />
     );
     const checkbox = screen.getByRole("checkbox");
@@ -50,6 +53,7 @@ describe("TodoItem", () => {
         onToggle={mockOnToggle}
         onDelete={mockOnDelete}
         onEdit={mockOnEdit}
+        index={0}
       />
     );
     const deleteButton = screen.getByRole("button", { name: /delete/i });

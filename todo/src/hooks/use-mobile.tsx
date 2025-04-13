@@ -1,22 +1,38 @@
-import { useState, useEffect } from "react";
+import * as React from "react";
 
-const useMobile = (breakpoint = 768): boolean => {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+export interface UseMobileOptions {
+  breakpoint?: number;
+  defaultValue?: boolean;
+}
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < breakpoint);
+export function useMobile({
+  breakpoint = 768,
+  defaultValue = false,
+}: UseMobileOptions = {}) {
+  const [isMobile, setIsMobile] = React.useState<boolean>(defaultValue);
+
+  React.useEffect(() => {
+    // Create media query
+    const mql = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+
+    // Update function
+    const updateIsMobile = () => {
+      setIsMobile(mql.matches);
     };
 
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
+    // Initial check
+    updateIsMobile();
 
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
+    // Add listener
+    if (typeof mql.addEventListener === "function") {
+      mql.addEventListener("change", updateIsMobile);
+      return () => mql.removeEventListener("change", updateIsMobile);
+    } else {
+      // Fallback for older browsers
+      mql.addListener(updateIsMobile);
+      return () => mql.removeListener(updateIsMobile);
+    }
   }, [breakpoint]);
 
   return isMobile;
-};
-
-export default useMobile;
+}

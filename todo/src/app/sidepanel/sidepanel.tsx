@@ -1,12 +1,24 @@
 "use client";
 
 import React from "react";
-import EnhancedTodoListCreator from "@/components/enhanced-todo-list-creator";
+import { createRoot } from "react-dom/client";
+import dynamic from "next/dynamic";
+import "../../styles/globals.css";
 
-export default function SidePanel() {
-  return (
-    <div className="w-[300px] h-screen bg-white dark:bg-gray-800 overflow-y-auto">
+const EnhancedTodoListCreator = dynamic(
+  () => import("@/components/enhanced-todo-list-creator"),
+  {
+    loading: () => <div>Loading...</div>,
+    ssr: false,
+  }
+);
+
+const container = document.getElementById("root");
+if (container) {
+  const root = createRoot(container);
+  root.render(
+    <React.StrictMode>
       <EnhancedTodoListCreator isPremium={false} />
-    </div>
+    </React.StrictMode>
   );
 }
