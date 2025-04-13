@@ -214,7 +214,9 @@ const EnhancedTodoListCreator: React.FC<TodoListProps> = ({
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
-                              className="flex items-center space-x-2 mb-2"
+                              className={`flex items-center space-x-2 mb-2 ${
+                                index % 2 === 0 ? "bg-gray-50" : "bg-white"
+                              } p-2 rounded`}
                             >
                               <Checkbox
                                 id={`task-${task.id}`}
@@ -225,13 +227,13 @@ const EnhancedTodoListCreator: React.FC<TodoListProps> = ({
                                 htmlFor={`task-${task.id}`}
                                 className={`flex-grow ${
                                   task.completed
-                                    ? "line-through text-muted-foreground"
-                                    : ""
+                                    ? "line-through text-gray-500"
+                                    : "text-gray-900"
                                 }`}
                               >
                                 {task.text}
                               </label>
-                              <span className="text-sm text-muted-foreground">
+                              <span className="text-sm text-gray-500">
                                 {task.category}
                               </span>
                               <Button

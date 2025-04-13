@@ -1,13 +1,29 @@
 {
-  "name": "todo",
-  "version": "0.1.0",
-  "private": true,
+  "name": "enhanced-todo-list",
+  "version": "1.0.0",
+  "private": false,
+  "description": "A feature-rich todo list Chrome extension with drag-and-drop support and dark mode",
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/enhanced-todo-list"
+  },
+  "keywords": [
+    "chrome-extension",
+    "todo",
+    "productivity",
+    "task-management",
+    "react",
+    "typescript"
+  ],
   "scripts": {
-  "dev": "next dev",
-  "build": "next build && next export -o dist",
-  "start": "next start"
-},
-  "type": "module",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --ext .ts,.tsx",
+    "test": "jest"
+  },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.2",
@@ -32,13 +48,21 @@
   },
   "devDependencies": {
     "@types/chrome": "^0.0.278",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-beautiful-dnd": "^13.1.8",
     "@types/react-dom": "^18",
+    "@types/testing-library__jest-dom": "^5.14.9",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.1",
+    "babel-jest": "^29.7.0",
     "copy-webpack-plugin": "^12.0.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
